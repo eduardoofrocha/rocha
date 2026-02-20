@@ -1,0 +1,29 @@
+<svg width="736" height="388" viewBox="0 0 736 388" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ser Infusão">
+  <rect width="736" height="388" fill="#001A3B"/>
+
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F57FF"/>
+      <stop offset="100%" stop-color="#52B9FF"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7AD8FF"/>
+      <stop offset="100%" stop-color="#2B6DFF"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9CE8FF"/>
+      <stop offset="100%" stop-color="#4CA8FF"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(138,123)">
+    <path d="M40 0C22 0 9 10 9 23c0 10 6 17 18 22l18 8c9 4 13 9 13 16 0 10-9 17-23 17-11 0-22-5-30-12l-8 11c11 10 25 16 39 16 25 0 43-14 43-33 0-14-7-24-25-31l-19-8c-8-3-11-7-11-12 0-8 7-13 18-13 8 0 16 2 24 8l8-11C60 4 51 0 40 0Z" fill="url(#g1)"/>
+    <path d="M43 47c-15 0-28 8-34 19 6 12 20 21 35 24 8-7 12-15 12-24 0-7-2-13-6-19-2 0-4 0-7 0Z" fill="url(#g3)" opacity="0.95"/>
+    <path d="M41 74c-12 0-22 8-22 19 0 8 4 14 13 19l17 8c8 4 11 9 11 15 0 10-9 17-22 17-11 0-21-4-29-12l-8 10c10 10 24 17 39 17 25 0 42-14 42-33 0-14-8-23-24-31l-18-8c-8-3-11-7-11-12 0-7 7-12 17-12 8 0 15 2 22 7l7-10c-9-6-19-10-34-10Z" fill="url(#g2)"/>
+  </g>
+
+  <g fill="#F7E9FA" font-family="Arial, Helvetica, sans-serif" font-weight="400" letter-spacing="2">
+    <text x="238" y="184" font-size="70">SER</text>
+    <text x="238" y="262" font-size="76">INFUSÃO</text>
+  </g>
+</svg>

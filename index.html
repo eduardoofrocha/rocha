@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Copa Smart</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand-wrap left-title">
+        <h1>Copa</h1>
+        <p>Ser Infusão</p>
+      </div>
+      <div class="header-actions">
+        <span id="currentUserBadge" class="badge">Modo Visitante</span>
+        <button id="logoutBtn" class="secondary hidden">Sair</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="authScreen" class="card screen active">
+        <h2>Entrar no sistema</h2>
+        <form id="loginForm" class="grid-form">
+          <label>
+            Usuário
+            <input id="username" required placeholder="ex: ana.paciente" />
+          </label>
+          <label>
+            Senha
+            <input id="password" required type="password" placeholder="••••••" />
+          </label>
+          <button type="submit">Acessar</button>
+        </form>
+        <details>
+          <summary>Usuários de demonstração</summary>
+          <ul>
+            <li>Paciente: ana.paciente / 123456</li>
+            <li>Copeira: copa.maria / 123456</li>
+            <li>Administrador: admin.joao / 123456</li>
+            <li>Atendimento: atendimento.lu / 123456</li>
+          </ul>
+        </details>
+      </section>
+
+      <section id="patientScreen" class="screen hidden">
+        <div class="card">
+          <h2>👤 Tela do Paciente</h2>
+          <p>Selecione os itens e envie seu pedido para a copa.</p>
+        </div>
+        <div class="split-layout">
+          <article class="card">
+            <h3>Cardápio</h3>
+            <div id="menuContainer" class="menu-list"></div>
+          </article>
+          <article class="card">
+            <h3>Novo Pedido</h3>
+            <form id="patientOrderForm" class="grid-form">
+              <label>
+                Nome do paciente
+                <input id="patientName" required placeholder="Nome completo" />
+              </label>
+              <label>
+                Quarto/Leito
+                <input id="patientRoom" required placeholder="Ex: 302-B" />
+              </label>
+              <label>
+                Item
+                <select id="productSelect" required></select>
+              </label>
+              <label id="customizationField" class="hidden">
+                Customização
+                <select id="customizationSelect"></select>
+              </label>
+              <label>
+                Observação
+                <textarea id="orderNote" rows="3" placeholder="Sem açúcar, alergia, etc."></textarea>
+              </label>
+              <button type="submit">Confirmar pedido</button>
+            </form>
+          </article>
+        </div>
+        <article class="card">
+          <h3>Status dos pedidos</h3>
+          <div id="patientOrders" class="table-wrapper"></div>
+        </article>
+      </section>
+
+      <section id="copaScreen" class="screen hidden">
+        <div class="card">
+          <h2>👩‍🍳 Tela da Copa</h2>
+          <div class="toolbar">
+            <label>
+              Filtro de turno
+              <select id="shiftFilter"></select>
+            </label>
+            <button id="clearAlertsBtn" class="secondary">Silenciar alerta</button>
+          </div>
+        </div>
+        <article class="card">
+          <h3>Pedidos em tempo real</h3>
+          <div id="copaOrders" class="table-wrapper"></div>
+        </article>
+        <article class="card">
+          <h3>Histórico do dia</h3>
+          <div id="dailyHistory" class="table-wrapper"></div>
+        </article>
+      </section>
+
+      <section id="adminScreen" class="screen hidden">
+        <div class="card">
+          <h2>🛠 Tela Administrativa</h2>
+          <p>Gestão de cardápio, estoque, usuários e relatórios.</p>
+        </div>
+        <div class="tabs">
+          <button data-tab="menu" class="tab active">Cardápio</button>
+          <button data-tab="stock" class="tab">Estoque</button>
+          <button data-tab="users" class="tab">Usuários</button>
+          <button data-tab="reports" class="tab">Relatórios</button>
+        </div>
+
+        <section id="tab-menu" class="card admin-tab active">
+          <h3>Gestão de Cardápio</h3>
+          <form id="categoryForm" class="inline-form">
+            <input id="newCategory" placeholder="Nova categoria" required />
+            <button type="submit">Adicionar categoria</button>
+          </form>
+          <form id="productForm" class="grid-form">
+            <label>
+              Produto
+              <input id="newProductName" required />
+            </label>
+            <label>
+              Categoria
+              <select id="newProductCategory" required></select>
+            </label>
+            <label>
+              Estoque inicial
+              <input id="newProductStock" type="number" min="0" value="10" required />
+            </label>
+            <label>
+              Estoque mínimo
+              <input id="newProductMinStock" type="number" min="0" value="3" required />
+            </label>
+            <label class="check-label">
+              <input id="newProductCustomizable" type="checkbox" />
+              Permite customização
+            </label>
+            <button type="submit">Cadastrar produto</button>
+          </form>
+          <div id="adminMenuTable" class="table-wrapper"></div>
+        </section>
+
+        <section id="tab-stock" class="card admin-tab hidden">
+          <h3>Controle de Estoque</h3>
+          <div id="stockTable" class="table-wrapper"></div>
+        </section>
+
+        <section id="tab-users" class="card admin-tab hidden">
+          <h3>Gestão de Usuários</h3>
+          <form id="userForm" class="grid-form">
+            <label>
+              Usuário
+              <input id="newUsername" required />
+            </label>
+            <label>
+              Senha
+              <input id="newUserPassword" required type="password" />
+            </label>
+            <label>
+              Perfil
+              <select id="newUserRole">
+                <option value="admin">Administrador</option>
+                <option value="copa">Copeira</option>
+                <option value="atendimento">Atendimento</option>
+                <option value="patient">Paciente</option>
+              </select>
+            </label>
+            <label>
+              Turno
+              <select id="newUserShift">
+                <option>manhã</option>
+                <option>tarde</option>
+                <option>noite</option>
+              </select>
+            </label>
+            <button type="submit">Criar usuário</button>
+          </form>
+          <div id="usersTable" class="table-wrapper"></div>
+        </section>
+
+        <section id="tab-reports" class="card admin-tab hidden">
+          <h3>Relatórios</h3>
+          <div class="toolbar">
+            <label>
+              Início
+              <input id="reportStart" type="date" />
+            </label>
+            <label>
+              Fim
+              <input id="reportEnd" type="date" />
+            </label>
+            <button id="refreshReports" type="button">Atualizar</button>
+            <button id="exportPdf" class="secondary" type="button">Exportar PDF</button>
+            <button id="exportExcel" class="secondary" type="button">Exportar Excel</button>
+          </div>
+          <div id="reportsView"></div>
+        </section>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+    <audio id="notificationSound" preload="auto">
+      <source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=" type="audio/wav" />
+    </audio>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
